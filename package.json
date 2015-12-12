@@ -1,0 +1,27 @@
+{
+  "name": "markdown-it-mathjax",
+  "version": "1.0.0",
+  "description": "",
+  "main": "markdown-it-mathjax.js",
+  "scripts": {
+    "test": "gulp lint test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/classeur/markdown-it-mathjax.git"
+  },
+  "author": "Benoit Schweblin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/classeur/markdown-it-mathjax/issues"
+  },
+  "homepage": "https://github.com/classeur/markdown-it-mathjax#readme",
+  "devDependencies": {
+    "clgulp": "^1.0.11",
+    "eslint-config-classeur": "^1.0.1",
+    "gulp": "^3.9.0",
+    "gulp-spawn-mocha": "^2.2.1",
+    "markdown-it": "^5.0.2",
+    "should": "^8.0.1"
+  }
+}
