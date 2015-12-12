@@ -7,11 +7,11 @@
 
 Processes TeX displayed math
 
-`$$1 *2* 3$$` => `\\[1 *2* 3\\]`
+`$$1 *2* 3$$` => `\[1 *2* 3\]`
 
 Processes TeX in-line math
 
-`$1 *2* 3$` => `\\(1 *2* 3\\)`
+`$1 *2* 3$` => `\(1 *2* 3\)`
 
 Skips in-line math if numbers are around (according to [pandoc math](http://pandoc.org/README.html#math))
 
@@ -19,13 +19,13 @@ Skips in-line math if numbers are around (according to [pandoc math](http://pand
 
 Also processes LaTeX delimiters (double backslashed)
 
-`\\\\(1 *2* 3\\\\)` => `\\(1 *2* 3\\)`
+`\\(1 *2* 3\\)` => `\(1 *2* 3\)`
 
-`\\\\[1 *2* 3\\\\]` => `\\[1 *2* 3\\]`
+`\\[1 *2* 3\\]` => `\[1 *2* 3\]`
 
 And sections
 
-`\\begin{section}1 *2* 3\\end{section}` => `\\begin{section}1 *2* 3\\end{section}`
+`\begin{abc}1 *2* 3\end{abc}` => `\begin{abc}1 *2* 3\end{abc}`
 
 
 ## Install
@@ -40,7 +40,7 @@ npm install markdown-it-mathjax --save
 var md = require('markdown-it')()
             .use(require('markdown-it-mathjax'));
 
-md.render('$1 *2* 3$') // => '<p>\\(1 *2* 3\\)</p>'
+md.render('$1 *2* 3$') // => '<p>\(1 *2* 3\)</p>'
 ```
 
 _Differences in browser._ If you load script directly into the page, without
