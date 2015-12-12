@@ -13,7 +13,7 @@ Processes TeX in-line math
 
 `$1 *2* 3$` => `\\(1 *2* 3\\)`
 
-Skips in-line math if numbers are around (according to [pandoc definition](http://pandoc.org/README.html#math))
+Skips in-line math if numbers are around (according to [pandoc math](http://pandoc.org/README.html#math))
 
 `$1 *2* 3$5` => `$1 <em>2</em> 3$5`
 
