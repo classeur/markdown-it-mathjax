@@ -23,6 +23,8 @@ Also processes LaTeX delimiters (double backslashed)
 
 `\\\\[1 *2* 3\\\\]` => `\\[1 *2* 3\\]`
 
+And sections
+
 `\\begin{section}1 *2* 3\\end{section}` => `\\begin{section}1 *2* 3\\end{section}`
 
 
