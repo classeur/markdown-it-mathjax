@@ -15,16 +15,17 @@
 			return false
 		}
 		startMathPos += match[0].length
-		var type, endMarker
+		var type, endMarker, includeMarkers
 		if (match[0] === '\\[') {
-			type = 'displayMath'
+			type = 'display_math'
 			endMarker = '\\\\]'
 		} else if (match[0] === '\\(') {
-			type = 'inlineMath'
+			type = 'inline_math'
 			endMarker = '\\\\)'
 		} else if (match[1]) {
-			type = 'math'
+			type = 'display_math'
 			endMarker = '\\end{' + match[1] + '}'
+			includeMarkers = true
 		}
 		var endMarkerPos = state.src.indexOf(endMarker, startMathPos)
 		if (endMarkerPos === -1) {
@@ -32,8 +33,8 @@
 		}
 		var nextPos = endMarkerPos + endMarker.length
 		if (!silent) {
-			var token = state.push(type)
-			token.math = type === 'math' ?
+			var token = state.push(type, '', 1)
+			token.content = includeMarkers ?
 				state.src.slice(state.pos, nextPos) : state.src.slice(startMathPos, endMarkerPos)
 		}
 		state.pos = nextPos
@@ -83,8 +84,8 @@
 		}
 
 		if (!silent) {
-			var token = state.push(endMarker.length === 1 ? 'inlineMath' : 'displayMath')
-			token.math = state.src.slice(startMathPos, endMarkerPos)
+			var token = state.push(endMarker.length === 1 ? 'inline_math' : 'display_math', '', 1)
+			token.content = state.src.slice(startMathPos, endMarkerPos)
 		}
 		state.pos = nextPos
 		return true
@@ -98,13 +99,13 @@
 		md.inline.ruler.before('escape', 'math', math)
 		md.inline.ruler.push('texMath', texMath)
 		md.renderer.rules.math = function(tokens, idx) {
-			return escapeHtml(tokens[idx].math)
+			return escapeHtml(tokens[idx].content)
 		}
-		md.renderer.rules.inlineMath = function(tokens, idx) {
-			return '\\(' + escapeHtml(tokens[idx].math) + '\\)'
+		md.renderer.rules.inline_math = function(tokens, idx) {
+			return '\\(' + escapeHtml(tokens[idx].content) + '\\)'
 		}
-		md.renderer.rules.displayMath = function(tokens, idx) {
-			return '\\[' + escapeHtml(tokens[idx].math) + '\\]'
+		md.renderer.rules.display_math = function(tokens, idx) {
+			return '\\[' + escapeHtml(tokens[idx].content) + '\\]'
 		}
 	}
 })
