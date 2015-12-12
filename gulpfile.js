@@ -4,7 +4,7 @@ var exec = clgulp.exec
 var util = clgulp.util
 var mocha = require('gulp-spawn-mocha')
 
-gulp.task('tag', function(cb) {
+gulp.task('tag', ['test', 'lint'], function(cb) {
 	var version = require('./package').version
 	var tag = 'v' + version
 	util.log('Tagging as: ' + util.colors.cyan(tag))

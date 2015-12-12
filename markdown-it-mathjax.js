@@ -23,7 +23,7 @@
 			type = 'inline_math'
 			endMarker = '\\\\)'
 		} else if (match[1]) {
-			type = 'display_math'
+			type = 'math'
 			endMarker = '\\end{' + match[1] + '}'
 			includeMarkers = true
 		}
