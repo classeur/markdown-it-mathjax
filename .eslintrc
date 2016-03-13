@@ -1,7 +1,0 @@
-{
-	"extends": ["classeur"],
-	"env": {
-		"node": true,
-		"es6": true
-	}
-}
