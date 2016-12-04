@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-mathjax",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "",
   "main": "markdown-it-mathjax.js",
   "scripts": {
