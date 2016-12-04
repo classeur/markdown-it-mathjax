@@ -1,8 +1,9 @@
 /* global describe, it */
 require('should')
-var md = require('markdown-it')()
+var markdownIt = require('markdown-it')
+var md = markdownIt()
 var markdownitMathjax = require('..')
-md.use(markdownitMathjax)
+md.use(markdownitMathjax())
 
 describe('Tex in-line math', function () {
   it('should work properly', function () {
@@ -43,5 +44,17 @@ describe('LaTeX displayed math', function () {
 describe('LaTeX section', function () {
   it('should work properly', function () {
     md.render('\\begin{section}1 *2* 3\\end{section}').should.eql('<p>\\begin{section}1 *2* 3\\end{section}</p>\n')
+  })
+})
+
+describe('Custom wrapping', function () {
+  var md = markdownIt()
+  md.use(markdownitMathjax({
+    beforeMath: '<span>',
+    afterMath: '</span>'
+  }))
+
+  it('should work properly', function () {
+    md.render('\\begin{section}1 *2* 3\\end{section}').should.eql('<p><span>\\begin{section}1 *2* 3\\end{section}</span></p>\n')
   })
 })

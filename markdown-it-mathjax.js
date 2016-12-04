@@ -96,17 +96,43 @@
     return html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ')
   }
 
-  return function (md) {
-    md.inline.ruler.before('escape', 'math', math)
-    md.inline.ruler.push('texMath', texMath)
-    md.renderer.rules.math = function (tokens, idx) {
-      return escapeHtml(tokens[idx].content)
+  function extend (options, defaults) {
+    return Object.keys(defaults).reduce(function (result, key) {
+      if (result[key] === undefined) {
+        result[key] = defaults[key]
+      }
+      return result
+    }, options)
+  }
+
+  var mapping = {
+    'math': 'Math',
+    'inline_math': 'InlineMath',
+    'display_math': 'DisplayMath'
+  }
+
+  return function (options) {
+    var defaults = {
+      beforeMath: '',
+      afterMath: '',
+      beforeInlineMath: '\\(',
+      afterInlineMath: '\\)',
+      beforeDisplayMath: '\\[',
+      afterDisplayMath: '\\]'
     }
-    md.renderer.rules.inline_math = function (tokens, idx) {
-      return '\\(' + escapeHtml(tokens[idx].content) + '\\)'
-    }
-    md.renderer.rules.display_math = function (tokens, idx) {
-      return '\\[' + escapeHtml(tokens[idx].content) + '\\]'
+    options = extend(options || {}, defaults)
+
+    return function (md) {
+      md.inline.ruler.before('escape', 'math', math)
+      md.inline.ruler.push('texMath', texMath)
+
+      Object.keys(mapping).forEach(function (key) {
+        var before = options['before' + mapping[key]]
+        var after = options['after' + mapping[key]]
+        md.renderer.rules[key] = function (tokens, idx) {
+          return before + escapeHtml(tokens[idx].content) + after
+        }
+      })
     }
   }
 })

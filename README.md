@@ -38,7 +38,7 @@ npm install markdown-it-mathjax --save
 
 ```js
 var md = require('markdown-it')()
-            .use(require('markdown-it-mathjax'));
+            .use(require('markdown-it-mathjax')());
 
 md.render('$1 *2* 3$') // => '<p>\(1 *2* 3\)</p>'
 ```
