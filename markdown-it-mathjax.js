@@ -1,6 +1,8 @@
 ;(function (root, factory) {
   if (typeof exports === 'object') {
     module.exports = factory()
+  } else if (typeof define === 'function') {
+    define(factory)
   } else {
     root.markdownitMathjax = factory()
   }
