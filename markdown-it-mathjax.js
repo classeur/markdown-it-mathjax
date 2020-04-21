@@ -71,6 +71,7 @@
       var afterMarker = state.src[ i + 1 ]
       if (marker === endMarker && !!/[^\d]/.test(afterMarker) && (i + 1) > startMathPos) {
         endMarkerPos = i
+        break
       }
     }
     if (endMarkerPos === -1) {
