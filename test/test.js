@@ -9,6 +9,9 @@ describe('Tex in-line math', function () {
   it('should work properly', function () {
     md.render('$1 *2* 3$').should.eql('<p>\\(1 *2* 3\\)</p>\n')
   })
+  it('can handle dollors in formulas', function () {
+    md.render('$sum_{$4}^2$').should.eql('<p>\\(sum_{$4}^2\\)</p>\n')
+  })
   it('should not be processed if space after first marker', function () {
     md.render('$ 1 *2* 3$').should.eql('<p>$ 1 <em>2</em> 3$</p>\n')
   })
@@ -17,9 +20,6 @@ describe('Tex in-line math', function () {
   })
   it('should not be processed if number around', function () {
     md.render('$1 *2* 3$5').should.eql('<p>$1 <em>2</em> 3$5</p>\n')
-  })
-  it('can handle dollors in subscript', function () {
-    md.render('$sum_{$4}^2$').should.eql('<p>\\(sum_{$4}^2\\)</p>\n')
   })
 })
 
