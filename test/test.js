@@ -58,3 +58,9 @@ describe('Custom wrapping', function () {
     md.render('\\begin{section}1 *2* 3\\end{section}').should.eql('<p><span>\\begin{section}1 *2* 3\\end{section}</span></p>\n')
   })
 })
+
+describe('describe from test...LaTeX in-line math', function () {
+  it('should work when escaped $ used for dollars', function () {
+    md.render('$sum_{$4}^2$').should.eql('<p>\\(sum_{$4}^2\\)</p>\n')
+  })
+})
