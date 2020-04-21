@@ -18,6 +18,9 @@ describe('Tex in-line math', function () {
   it('should not be processed if number around', function () {
     md.render('$1 *2* 3$5').should.eql('<p>$1 <em>2</em> 3$5</p>\n')
   })
+  it('can handle dollors in subscript', function () {
+    md.render('$sum_{$4}^2$').should.eql('<p>\\(sum_{$4}^2\\)</p>\n')
+  })
 })
 
 describe('Tex displayed math', function () {
@@ -59,8 +62,3 @@ describe('Custom wrapping', function () {
   })
 })
 
-describe('describe from test...LaTeX in-line math', function () {
-  it('should work when escaped $ used for dollars', function () {
-    md.render('$sum_{$4}^2$').should.eql('<p>\\(sum_{$4}^2\\)</p>\n')
-  })
-})
