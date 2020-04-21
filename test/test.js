@@ -61,4 +61,3 @@ describe('Custom wrapping', function () {
     md.render('\\begin{section}1 *2* 3\\end{section}').should.eql('<p><span>\\begin{section}1 *2* 3\\end{section}</span></p>\n')
   })
 })
-
