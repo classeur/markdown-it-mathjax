@@ -63,7 +63,17 @@
         return false
       }
     }
+
+    // find endMarkerPos
     var endMarkerPos = state.src.indexOf(endMarker, startMathPos)
+    for (var i = 0; i < state.src.length; i++) {
+      var marker = state.src[i]
+      var afterMarker = state.src[ i + 1 ]
+      if (marker === endMarker && /[^\d]/.test(afterMarker) && (i + 1) > startMathPos) {
+        endMarkerPos = i
+        break
+      }
+    }
     if (endMarkerPos === -1) {
       return false
     }

@@ -9,6 +9,12 @@ describe('Tex in-line math', function () {
   it('should work properly', function () {
     md.render('$1 *2* 3$').should.eql('<p>\\(1 *2* 3\\)</p>\n')
   })
+  it('can handle dollars in formulas', function () {
+    md.render('$sum_{$4}^2$').should.eql('<p>\\(sum_{$4}^2\\)</p>\n')
+  })
+  it('can handle multiple dollars in formulas', function () {
+    md.render('if $a^{$2.00}$ then $b^{$3.00}$').should.eql('<p>if \\(a^{$2.00}\\) then \\(b^{$3.00}\\)</p>\n')
+  })
   it('should not be processed if space after first marker', function () {
     md.render('$ 1 *2* 3$').should.eql('<p>$ 1 <em>2</em> 3$</p>\n')
   })
