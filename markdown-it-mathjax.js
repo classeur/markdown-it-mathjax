@@ -69,7 +69,7 @@
     for (var i = 0; i < state.src.length; i++) {
       var marker = state.src[i]
       var afterMarker = state.src[ i + 1 ]
-      if (marker === endMarker && !!/[^\d]/.test(afterMarker) && (i + 1) > startMathPos) {
+      if (marker === endMarker && /[^\d]/.test(afterMarker) && (i + 1) > startMathPos) {
         endMarkerPos = i
         break
       }
