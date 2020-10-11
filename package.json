@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "",
   "main": "markdown-it-mathjax.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "gulp lint test"
   },
@@ -22,6 +23,7 @@
     "gulp": "^3.9.0",
     "gulp-spawn-mocha": "^2.2.1",
     "markdown-it": "^5.0.2",
+    "@types/markdown-it": "^5.0.2",
     "should": "^8.0.1"
   }
 }
